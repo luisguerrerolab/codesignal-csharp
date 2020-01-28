@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -47,7 +48,26 @@ namespace codesignal
 
         public string ReverseInParentheses(string inputString)
         {
-            return string.Empty;
+            while (inputString.Length > 0) {
+                var open = inputString.LastIndexOf('(');
+
+                if (open == -1)
+                    break;
+
+                var closed = inputString.IndexOf(')', open, inputString.Length - open);
+
+                var normal = inputString.Substring(open + 1, (closed - open) - 1).ToString();
+                if (!string.IsNullOrEmpty(normal))
+                {
+                    var reverse = new string(normal.Reverse().ToArray());
+                    inputString = inputString.Replace(normal, reverse);
+                }
+
+                inputString = inputString.Remove(open, 1);
+                inputString = inputString.Remove(closed - 1, 1);
+            }
+
+            return inputString;
         }
     }
 }
