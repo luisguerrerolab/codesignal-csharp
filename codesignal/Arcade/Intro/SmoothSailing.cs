@@ -69,5 +69,20 @@ namespace codesignal
 
             return inputString;
         }
+
+        public int[] AlternatingSums(int[] a)
+        {
+            var weightTeam1 = 0;
+            var weightTeam2 = 0;
+
+            for (var i = 0; i < a.Length; i++) {
+                if (i % 2 == 0)
+                    weightTeam1 += a[i];
+                else
+                    weightTeam2 += a[i];
+            }
+
+            return new int[] {weightTeam1, weightTeam2};
+        }
     }
 }
